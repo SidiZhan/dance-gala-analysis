@@ -2,7 +2,7 @@ import xlrd
 import re
 import random
 
-workbook = xlrd.open_workbook(r'/Users/i505432/Downloads/2022 Dance Gala 报名表.xls')
+workbook = xlrd.open_workbook(r'./2022 Dance Gala 报名表.xls')
 worksheet = workbook.sheet_by_name(r'工作表1')
 
 dance_type_dict = dict()
@@ -111,30 +111,6 @@ def check(l, e):
 
 
     # now check with the special requirements 
-
-    # specific requirements: "Run the world" and "BNZ&FIGUB" dist >= 5: dist() = int
-    if i-4 >= 0:
-        if (e == 'Run the world' and l[i-4] == 'BNZ&FIGUB') or (l[i-4] == 'Run the world' and e == 'BNZ&FIGUB'):
-            return False
-
-
-    # specific requirements: "朝鲜舞" shall be after other "meihua.han@sap.com" dances
-    if e == '朝鲜舞':
-        dancer = 'meihua.han@sap.com'
-        d_count = len(dancer_dances_dict[dancer]) - 1 # number of other dances
-        count = 0
-        for dance in l:
-            if list(dance_dancers_dict[dance]).count(dancer) > 0:
-                count = count + 1
-        if count != d_count:
-            return False
-
-    # specific requirements: '赤伶' shall be before other "tina.chen03@sap.com" dances
-    if e == '赤伶':
-        dancer = 'tina.chen03@sap.com'
-        for dance in l:
-            if list(dance_dancers_dict[dance]).count(dancer) > 0:
-                return False
 
     return True
 

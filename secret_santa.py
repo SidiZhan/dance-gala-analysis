@@ -2,17 +2,9 @@ import uuid
 import random
 
 # sender - address, receiver - address
-people_str = """sindy
-lynn
-gaoya 
-julie
-ruca
-lily
-melody
-tina
-katie
-ping
-isabelle"""
+people_str = """peter
+paul
+mary"""
 people = list(people_str.splitlines())
 receiver_address = { i : uuid.uuid4() for i in people }
 
