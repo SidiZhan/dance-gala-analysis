@@ -2,7 +2,7 @@ import xlrd
 import re
 import random
 
-workbook = xlrd.open_workbook(r'./2022 Dance Gala 报名表.xls')
+workbook = xlrd.open_workbook(r'/Users/i505432/Downloads/2022 Dance Gala 报名表.xls')
 worksheet = workbook.sheet_by_name(r'工作表1')
 
 dance_type_dict = dict()

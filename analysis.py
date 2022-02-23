@@ -2,7 +2,7 @@ import xlrd
 import re
 import random
 
-workbook = xlrd.open_workbook(r'./2022 Dance Gala 报名表.xls')
+workbook = xlrd.open_workbook(r'/Users/i505432/Downloads/2022 Dance Gala 报名表.xls')
 worksheet = workbook.sheet_by_name(r'工作表1')
 
 dance_type_dict = dict()
@@ -42,6 +42,10 @@ for key in dance_dancers_dict:
         else:
             dancer_dances_dict[dancer].append(key)
 
+print('\n\n\n== 舞者名单 ==')
+for key in dancer_dances_dict:
+    print(key, len(dancer_dances_dict[key]), dancer_dances_dict[key])
+
 dancer_dances_count_dict = dict()
 for key in dancer_dances_dict:
     num = len(dancer_dances_dict[key])
@@ -49,12 +53,12 @@ for key in dancer_dances_dict:
         dancer_dances_count_dict[num] = 1
     else:
         dancer_dances_count_dict[num] = dancer_dances_count_dict[num] + 1
-print('单人表演节目数量：')
+print('\n\n\n== 单人表演节目数量 ==')
 for key in dancer_dances_count_dict:
     print('-', '同时参与了', key, '个节目的表演者有', dancer_dances_count_dict[key], '位')
 
 
-print('== 节目单 ==')
+print('\n\n\n== 节目单 ==')
 # 1. dancer has > 3 dances between her two dances
 # 2. two nearby dances are of differnt types
 
@@ -110,7 +114,10 @@ def check(l, e):
             return False
 
 
-    # now check with the special requirements 
+    # now check with the special requirements: in ./special_requirements.py special_requirements()
+    from special_requirements import special_requirements
+    if special_requirements(i, e, l, dancer_dances_dict, dance_dancers_dict) is False:
+        return False
 
     return True
 
